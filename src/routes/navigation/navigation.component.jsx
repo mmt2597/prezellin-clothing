@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 
@@ -14,10 +14,14 @@ import {
 } from "./navigation.styles";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
+import { signOutStart } from "../../store/user/user.action";
 
 const Navigation = () => {
+    const dispatch = useDispatch();
     const currentUser = useSelector(selectCurrentUser);
     const isCartOpen = useSelector(selectIsCartOpen);
+
+    const signOutUser = () => dispatch(signOutStart())
 
     return (
         <>
@@ -30,9 +34,9 @@ const Navigation = () => {
                 <NavLinks>
                     <NavLink to="/shop">SHOP</NavLink>
                     {currentUser ? (
-                        <span className="nav-link" onClick={signOutUser}>
+                        <NavLink onClick={signOutUser}>
                             SIGN OUT
-                        </span>
+                        </NavLink>
                     ) : (
                         <NavLink to="/auth">SIGN IN</NavLink>
                     )}
