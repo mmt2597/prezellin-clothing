@@ -40,7 +40,7 @@ export const signUpFailed = (error) =>
 // Sign Out
 export const signOutStart = () =>
     createAction(USER_ACTION_TYPES.SIGN_OUT_START);
-    
+
 export const signOutSuccess = () =>
     createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS);
 
